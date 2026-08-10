@@ -338,7 +338,7 @@ training_args = SFTConfig(
 
     lr_scheduler_type="cosine",
 
-    warmup_ratio=0.03,
+    warmup_steps=40,
 
     # --------------------------------------------------------
     # Precision
