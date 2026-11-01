@@ -1,0 +1,2 @@
+# The support application does not require a model download or GPU for Part 1.
+-r requirements-app.txt

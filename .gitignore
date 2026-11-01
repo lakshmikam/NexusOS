@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+outputs/
+checkpoints/
+*.pt
+*.pth
+.env
+.env.*
+!.env.example
