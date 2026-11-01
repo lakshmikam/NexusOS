@@ -1,0 +1,1780 @@
+{
+  "note": "Same corpus, model, queries and token budget. Heading chunks do not overlap; fixed chunks overlap by 12 words. This is a small development comparison.",
+  "strategies": {
+    "heading": {
+      "build": {
+        "index_id": "idx_a40b5f4c429e47d295356f1079110983",
+        "published": false,
+        "strategy": "heading",
+        "documents": 3,
+        "chunks": 11,
+        "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+        "dimensions": 384,
+        "build_seconds": 0.38917599990963936,
+        "corpus_hash": "7005dd68e27548470063397c3d1cb49b84994f05da45db2ef1e157eee9ceb33b"
+      },
+      "evaluation": {
+        "label": "small development set; not a held-out quality guarantee",
+        "top_k": 3,
+        "methods": {
+          "bm25": {
+            "hit_at_k": 1.0,
+            "mrr_at_k": 0.9583333333333334,
+            "mean_retrieved_embedding_tokens": 165.5,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 195,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_28763bc6a114cf7beefa",
+                    "policy_id": "escalation-v1",
+                    "heading": "Applicable policy versions"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 4.9057998694479465
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  }
+                ],
+                "elapsed_ms": 2.554400125518441
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 163,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 2.0703000482171774
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 159,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_6f24ff71281e71a1611f",
+                    "policy_id": "billing-v1",
+                    "heading": "Price and money units"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 1.8621000926941633
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 163,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 2.3487999569624662
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 159,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_6f24ff71281e71a1611f",
+                    "policy_id": "billing-v1",
+                    "heading": "Price and money units"
+                  }
+                ],
+                "elapsed_ms": 2.336299978196621
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 165,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  }
+                ],
+                "elapsed_ms": 2.383399987593293
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 111,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 2.1400998812168837
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 170,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  }
+                ],
+                "elapsed_ms": 1.95020018145442
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 194,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_28763bc6a114cf7beefa",
+                    "policy_id": "escalation-v1",
+                    "heading": "Applicable policy versions"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  }
+                ],
+                "elapsed_ms": 1.7858000937849283
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 166,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_9594bffc7bf9f033c99e",
+                    "policy_id": "escalation-v1",
+                    "heading": "Missing evidence and escalation"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 1.751899952068925
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 164,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_4a50079c426ede41425b",
+                    "policy_id": "escalation-v1",
+                    "heading": "Ticket lifecycle"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 1.744000008329749
+              }
+            ]
+          },
+          "dense": {
+            "hit_at_k": 0.9166666666666666,
+            "mrr_at_k": 0.875,
+            "mean_retrieved_embedding_tokens": 171.16666666666666,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  }
+                ],
+                "elapsed_ms": 20.297500072047114
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 167,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  }
+                ],
+                "elapsed_ms": 21.39300014823675
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  }
+                ],
+                "elapsed_ms": 18.10669992119074
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 159,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_6f24ff71281e71a1611f",
+                    "policy_id": "billing-v1",
+                    "heading": "Price and money units"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 20.90999996289611
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  }
+                ],
+                "elapsed_ms": 16.86939992941916
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 166,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 22.539400029927492
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 165,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 16.12620009109378
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 155,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 20.06799983792007
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 181,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_9594bffc7bf9f033c99e",
+                    "policy_id": "escalation-v1",
+                    "heading": "Missing evidence and escalation"
+                  }
+                ],
+                "elapsed_ms": 20.01350000500679
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": null,
+                "retrieved_embedding_tokens": 163,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 19.682600162923336
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 197,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_9594bffc7bf9f033c99e",
+                    "policy_id": "escalation-v1",
+                    "heading": "Missing evidence and escalation"
+                  },
+                  {
+                    "chunk_id": "chk_28763bc6a114cf7beefa",
+                    "policy_id": "escalation-v1",
+                    "heading": "Applicable policy versions"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 19.698599819093943
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 170,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_4a50079c426ede41425b",
+                    "policy_id": "escalation-v1",
+                    "heading": "Ticket lifecycle"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  }
+                ],
+                "elapsed_ms": 16.58680010586977
+              }
+            ]
+          },
+          "hybrid": {
+            "hit_at_k": 1.0,
+            "mrr_at_k": 0.9027777777777778,
+            "mean_retrieved_embedding_tokens": 171.16666666666666,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 163,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 22.14709995314479
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  }
+                ],
+                "elapsed_ms": 24.930199841037393
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 163,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 21.717499941587448
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 159,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_6f24ff71281e71a1611f",
+                    "policy_id": "billing-v1",
+                    "heading": "Price and money units"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 22.29669992811978
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 177,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_aebade92489bf6c9bf26",
+                    "policy_id": "billing-v1",
+                    "heading": "Refund eligibility and approval"
+                  }
+                ],
+                "elapsed_ms": 21.973300026729703
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 159,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_6f24ff71281e71a1611f",
+                    "policy_id": "billing-v1",
+                    "heading": "Price and money units"
+                  }
+                ],
+                "elapsed_ms": 22.47109985910356
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 165,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  }
+                ],
+                "elapsed_ms": 20.824400009587407
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 155,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_424c8017a566065e9366",
+                    "policy_id": "access-v1",
+                    "heading": "Access correction and approval"
+                  },
+                  {
+                    "chunk_id": "chk_cc56d77e4b6fde3adf37",
+                    "policy_id": "access-v1",
+                    "heading": "Subscription versus feature access"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  }
+                ],
+                "elapsed_ms": 22.673900006338954
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 181,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_9594bffc7bf9f033c99e",
+                    "policy_id": "escalation-v1",
+                    "heading": "Missing evidence and escalation"
+                  }
+                ],
+                "elapsed_ms": 21.9159999396652
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": 3,
+                "retrieved_embedding_tokens": 194,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_2f880fe4385859a75140",
+                    "policy_id": "billing-v1",
+                    "heading": "Invoices and payment attempts"
+                  },
+                  {
+                    "chunk_id": "chk_32a1126deca3e2e8a775",
+                    "policy_id": "billing-v1",
+                    "heading": "Duplicate-payment investigation"
+                  },
+                  {
+                    "chunk_id": "chk_28763bc6a114cf7beefa",
+                    "policy_id": "escalation-v1",
+                    "heading": "Applicable policy versions"
+                  }
+                ],
+                "elapsed_ms": 21.510699996724725
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 197,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_9594bffc7bf9f033c99e",
+                    "policy_id": "escalation-v1",
+                    "heading": "Missing evidence and escalation"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  },
+                  {
+                    "chunk_id": "chk_28763bc6a114cf7beefa",
+                    "policy_id": "escalation-v1",
+                    "heading": "Applicable policy versions"
+                  }
+                ],
+                "elapsed_ms": 23.119299905374646
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 164,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_4a50079c426ede41425b",
+                    "policy_id": "escalation-v1",
+                    "heading": "Ticket lifecycle"
+                  },
+                  {
+                    "chunk_id": "chk_418f297ad5c232f31822",
+                    "policy_id": "access-v1",
+                    "heading": "Evidence for paid access"
+                  },
+                  {
+                    "chunk_id": "chk_ae6ddefcdab12f29a302",
+                    "policy_id": "escalation-v1",
+                    "heading": "Identity and account boundaries"
+                  }
+                ],
+                "elapsed_ms": 19.861700013279915
+              }
+            ]
+          }
+        }
+      }
+    },
+    "fixed": {
+      "build": {
+        "index_id": "idx_e7958837fe4b403f98b7a7257077d4a1",
+        "published": false,
+        "strategy": "fixed",
+        "documents": 3,
+        "chunks": 5,
+        "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+        "dimensions": 384,
+        "build_seconds": 0.42758979997597635,
+        "corpus_hash": "7005dd68e27548470063397c3d1cb49b84994f05da45db2ef1e157eee9ceb33b"
+      },
+      "evaluation": {
+        "label": "small development set; not a held-out quality guarantee",
+        "top_k": 3,
+        "methods": {
+          "bm25": {
+            "hit_at_k": 1.0,
+            "mrr_at_k": 0.9166666666666666,
+            "mean_retrieved_embedding_tokens": 349.5,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 4.139299970120192
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 286,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.3940999526530504
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 306,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.4468000046908855
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 306,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.0288999658077955
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 306,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.00739991851151
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 306,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.973700175061822
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 374,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.9251999221742153
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 127,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 1.9835999701172113
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 1.9640999380499125
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 3.364600008353591
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.0703000482171774
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 2.8311999049037695
+              }
+            ]
+          },
+          "dense": {
+            "hit_at_k": 0.9166666666666666,
+            "mrr_at_k": 0.9166666666666666,
+            "mean_retrieved_embedding_tokens": 369.6666666666667,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 393,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 33.670400036498904
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 21.06890012510121
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 393,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 21.940399892628193
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 16.895199893042445
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 21.625899942591786
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 20.06069989874959
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 19.607699941843748
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 17.338099889457226
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 393,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 19.935399992391467
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": null,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 19.020899897441268
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 422,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 19.45329993031919
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 17.02929986640811
+              }
+            ]
+          },
+          "hybrid": {
+            "hit_at_k": 1.0,
+            "mrr_at_k": 0.9583333333333334,
+            "mean_retrieved_embedding_tokens": 386.75,
+            "cases": [
+              {
+                "id": "duplicate",
+                "query": "I was charged twice for the same invoice. What should be investigated?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 18.12910009175539
+              },
+              {
+                "id": "refund",
+                "query": "What are the eligibility and approval requirements for a duplicate charge refund?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 286,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 23.163999896496534
+              },
+              {
+                "id": "attempts",
+                "query": "One attempt failed and another is pending. Does that prove two successful charges?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 24.65720009058714
+              },
+              {
+                "id": "price",
+                "query": "What is the monthly Pro price and which unit stores money?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 21.980700083076954
+              },
+              {
+                "id": "retry",
+                "query": "Should a repeated provider reference be counted as another payment?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 345,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 20.246900152415037
+              },
+              {
+                "id": "features",
+                "query": "My Pro subscription is active but the team workspace is disabled. How can that happen?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 22.25240017287433
+              },
+              {
+                "id": "paid-access",
+                "query": "Does a pending payment establish paid feature access?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 374,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 22.544600069522858
+              },
+              {
+                "id": "correction",
+                "query": "Can an assistant enable a feature just because its model recommends it?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 27.183900121599436
+              },
+              {
+                "id": "ownership",
+                "query": "Can I investigate the account ID a customer typed into the message?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 481,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 28.103400021791458
+              },
+              {
+                "id": "version",
+                "query": "Should an old payment be judged using today's policy?",
+                "first_relevant_rank": 2,
+                "retrieved_embedding_tokens": 393,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_692172a6fc55f6c282ba",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d052945ffdded53a4e98",
+                    "policy_id": "billing-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 24.242199957370758
+              },
+              {
+                "id": "missing",
+                "query": "What should support do when necessary evidence is missing?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 21.845499984920025
+              },
+              {
+                "id": "lifecycle",
+                "query": "Which support ticket states are allowed?",
+                "first_relevant_rank": 1,
+                "retrieved_embedding_tokens": 370,
+                "retrieved": [
+                  {
+                    "chunk_id": "chk_1973dc6d1146bec6a6ae",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_93258e0bb8e0884ef0e4",
+                    "policy_id": "escalation-v1",
+                    "heading": "Whole document"
+                  },
+                  {
+                    "chunk_id": "chk_d8ef7b57bbf0d2e392d0",
+                    "policy_id": "access-v1",
+                    "heading": "Whole document"
+                  }
+                ],
+                "elapsed_ms": 23.873900063335896
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

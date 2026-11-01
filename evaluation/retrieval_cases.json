@@ -1,0 +1,14 @@
+[
+  {"id":"duplicate","query":"I was charged twice for the same invoice. What should be investigated?","as_of":"2026-11-01","relevant":[{"policy_id":"billing-v1","quote":"Two distinct successful payment records"}]},
+  {"id":"refund","query":"What are the eligibility and approval requirements for a duplicate charge refund?","as_of":"2026-11-01","relevant":[{"policy_id":"billing-v1","quote":"no prior refund of that charge"}]},
+  {"id":"attempts","query":"One attempt failed and another is pending. Does that prove two successful charges?","as_of":"2026-11-01","relevant":[{"policy_id":"billing-v1","quote":"is not evidence of a successful charge"}]},
+  {"id":"price","query":"What is the monthly Pro price and which unit stores money?","as_of":"2026-11-01","relevant":[{"policy_id":"billing-v1","quote":"Amounts are stored in paise"}]},
+  {"id":"retry","query":"Should a repeated provider reference be counted as another payment?","as_of":"2026-11-01","relevant":[{"policy_id":"billing-v1","quote":"same provider reference as separate payments"}]},
+  {"id":"features","query":"My Pro subscription is active but the team workspace is disabled. How can that happen?","as_of":"2026-11-01","relevant":[{"policy_id":"access-v1","quote":"They can disagree when an access-provisioning problem occurs"}]},
+  {"id":"paid-access","query":"Does a pending payment establish paid feature access?","as_of":"2026-11-01","relevant":[{"policy_id":"access-v1","quote":"A pending payment alone does not establish paid access"}]},
+  {"id":"correction","query":"Can an assistant enable a feature just because its model recommends it?","as_of":"2026-11-01","relevant":[{"policy_id":"access-v1","quote":"approved by an authorized operator before execution"}]},
+  {"id":"ownership","query":"Can I investigate the account ID a customer typed into the message?","as_of":"2026-11-01","relevant":[{"policy_id":"escalation-v1","quote":"not proof of ownership"}]},
+  {"id":"version","query":"Should an old payment be judged using today's policy?","as_of":"2026-11-01","relevant":[{"policy_id":"escalation-v1","quote":"do not silently apply today's policy retrospectively"}]},
+  {"id":"missing","query":"What should support do when necessary evidence is missing?","as_of":"2026-11-01","relevant":[{"policy_id":"escalation-v1","quote":"ask a focused clarification question or escalate"}]},
+  {"id":"lifecycle","query":"Which support ticket states are allowed?","as_of":"2026-11-01","relevant":[{"policy_id":"escalation-v1","quote":"open, investigating, pending_approval, resolved, escalated"}]}
+]
