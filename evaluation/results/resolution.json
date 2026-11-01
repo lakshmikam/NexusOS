@@ -1,0 +1,42 @@
+{
+  "label": "Four synthetic development cases; reused active real policy index; not held-out or a production reliability estimate.",
+  "index_id": "idx_dcab81542b784c25b253cdcc4b550ab4",
+  "cases": [
+    {
+      "case": "healthy",
+      "passed": true,
+      "initial_outcome": "resolved",
+      "proposals": 0,
+      "elapsed_ms": 1698.1,
+      "generation_calls": 0
+    },
+    {
+      "case": "pending",
+      "passed": true,
+      "initial_outcome": "escalated",
+      "proposals": 0,
+      "elapsed_ms": 1549.76,
+      "generation_calls": 0
+    },
+    {
+      "case": "duplicate",
+      "passed": true,
+      "initial_outcome": "pending_approval",
+      "proposals": 2,
+      "elapsed_ms": 2031.16,
+      "generation_calls": 0
+    },
+    {
+      "case": "injection",
+      "passed": true,
+      "initial_outcome": "pending_approval",
+      "proposals": 2,
+      "elapsed_ms": 2281.19,
+      "generation_calls": 0
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "generation_calls": 0,
+  "generation_cost_note": "This deterministic workflow makes no LLM calls; policy chat has separate provider usage."
+}

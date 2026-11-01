@@ -1,0 +1,13 @@
+services:
+  nexus:
+    build: .
+    ports:
+      - "127.0.0.1:8766:8766"
+    env_file: .env
+    volumes:
+      - nexus-data:/app/data
+      - nexus-models:/app/model-cache
+    restart: unless-stopped
+volumes:
+  nexus-data:
+  nexus-models:

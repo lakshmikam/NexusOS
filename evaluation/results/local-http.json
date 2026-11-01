@@ -1,0 +1,10 @@
+{
+  "label": "Local loopback read-only billing requests; includes HTTP overhead, no LLM or dense search; not production capacity.",
+  "requests": 24,
+  "concurrency": 4,
+  "p50_ms": 33.73,
+  "p95_ms": 51.14,
+  "max_ms": 53.48,
+  "total_seconds": 0.236,
+  "errors": 0
+}

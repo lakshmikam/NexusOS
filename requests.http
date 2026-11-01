@@ -1,0 +1,154 @@
+@token = paste-access-token-here
+
+### Login as Asha; copy access_token to the variable above
+POST http://127.0.0.1:8766/api/auth/login
+Content-Type: application/json
+
+{"email":"asha@example.test","password":"OrbitDesk-Demo-2026!"}
+
+### Operator login (needed for all-account demo overview)
+POST http://127.0.0.1:8766/api/auth/login
+Content-Type: application/json
+
+{"email":"support@example.test","password":"OrbitDesk-Operator-2026!"}
+
+### Health (public)
+GET http://127.0.0.1:8766/health
+
+### Three synthetic cases
+GET http://127.0.0.1:8766/api/demo/scenarios
+Authorization: Bearer {{token}}
+
+### Current subscription and actual feature access
+GET http://127.0.0.1:8766/api/accounts/acct_duplicate
+Authorization: Bearer {{token}}
+
+### Invoice and all payment attempts
+GET http://127.0.0.1:8766/api/accounts/acct_duplicate/invoices
+Authorization: Bearer {{token}}
+
+### Two attempts, but neither is a confirmed successful charge
+GET http://127.0.0.1:8766/api/accounts/acct_pending/invoices
+Authorization: Bearer {{token}}
+
+### Create a persistent support ticket
+POST http://127.0.0.1:8766/api/tickets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "account_id": "acct_duplicate",
+  "subject": "Charged twice and missing Pro access",
+  "description": "I upgraded yesterday, was charged twice, and still cannot access the paid features."
+}
+
+### Your verified identity
+GET http://127.0.0.1:8766/api/auth/me
+Authorization: Bearer {{token}}
+
+### Revoke this session
+POST http://127.0.0.1:8766/api/auth/logout
+Authorization: Bearer {{token}}
+
+### Policy index status
+GET http://127.0.0.1:8766/api/retrieval/status
+Authorization: Bearer {{token}}
+
+### Inspect policy passages (not account records)
+GET http://127.0.0.1:8766/api/retrieval/chunks?as_of=2026-10-31
+Authorization: Bearer {{token}}
+
+### Compare methods by changing bm25 / dense / hybrid
+POST http://127.0.0.1:8766/api/retrieval/search
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"query":"I was charged twice. What evidence is needed for a refund?","method":"hybrid","top_k":3,"as_of":"2026-10-31"}
+
+### Rebuild policy index (operator token only, cached model required)
+POST http://127.0.0.1:8766/api/retrieval/reindex
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"strategy":"heading","max_tokens":180}
+
+### Run the small development evaluation (operator only)
+POST http://127.0.0.1:8766/api/retrieval/evaluate
+Authorization: Bearer {{token}}
+
+### Safe Gemini configuration status (never includes the key)
+GET http://127.0.0.1:8766/api/rag/status
+Authorization: Bearer {{token}}
+
+### Inspect the prompt without generation or a saved turn
+POST http://127.0.0.1:8766/api/rag/preview
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"question":"What evidence and approval are required for a duplicate-charge refund?","method":"bm25","as_of":"2026-10-31"}
+
+### Generate a checked policy answer (real provider quota)
+POST http://127.0.0.1:8766/api/rag/answer
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"question":"What evidence and approval are required for a duplicate-charge refund?","method":"bm25","as_of":"2026-10-31"}
+
+### Create a private conversation; copy returned id below
+POST http://127.0.0.1:8766/api/conversations
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"title":"Duplicate-charge policy question"}
+
+@conversation_id = paste-returned-conversation-id
+
+### Follow-up with memory and validation-first NDJSON streaming
+POST http://127.0.0.1:8766/api/rag/stream
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"question":"Does that mean a refund has already been issued to me?","conversation_id":"{{conversation_id}}","method":"bm25","as_of":"2026-10-31"}
+
+### Read your saved conversation
+GET http://127.0.0.1:8766/api/conversations/{{conversation_id}}
+Authorization: Bearer {{token}}
+
+### Investigate records and policies; creates proposals but executes nothing
+POST http://127.0.0.1:8766/api/investigations
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"account_id":"acct_duplicate","complaint":"I upgraded yesterday, was charged twice, and cannot access Pro features.","event_date":"2026-10-31"}
+
+### List authorized investigations
+GET http://127.0.0.1:8766/api/investigations
+Authorization: Bearer {{token}}
+
+@proposal_id = paste-returned-proposal-id
+
+### Review a pending proposal (operator token; does not execute)
+POST http://127.0.0.1:8766/api/proposals/{{proposal_id}}/decision
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"decision":"approve","note":"Reviewed verified records and supporting policy evidence."}
+
+### Explicit simulated execution (operator token; retry SAME key for same request)
+POST http://127.0.0.1:8766/api/proposals/{{proposal_id}}/execute
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"idempotency_key":"manual-demo-execution-001"}
+
+### Current ledger including simulated refunds and net paid
+GET http://127.0.0.1:8766/api/tools/billing/acct_duplicate
+Authorization: Bearer {{token}}
+
+### Audit history for authorized account
+GET http://127.0.0.1:8766/api/accounts/acct_duplicate/audit
+Authorization: Bearer {{token}}
+
+### Operational readiness and usage (operator only)
+GET http://127.0.0.1:8766/api/system/status
+Authorization: Bearer {{token}}

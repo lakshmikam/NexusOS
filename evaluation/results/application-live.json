@@ -1,0 +1,23 @@
+{
+  "health": {
+    "status": "ok",
+    "phase": 8,
+    "mode": "synthetic demo",
+    "authentication": "expiring bearer sessions"
+  },
+  "database_counts": {
+    "investigations": 1,
+    "action_proposals": 2,
+    "refunds": 1,
+    "audit_events": 6
+  },
+  "provider": {
+    "model": "gemini-3.8-flash",
+    "configured": true
+  },
+  "final_account": {
+    "net_paid_minor": 99900,
+    "refunded_minor": 99900,
+    "excess_paid_minor": 0
+  }
+}
